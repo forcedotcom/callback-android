@@ -120,11 +120,8 @@ public class NetworkManager extends Plugin {
         String result = "Unsupported Operation: " + action;    
         
         if (action.equals("getConnectionInfo")) {
-            this.connectionCallbackId = callbackId;
             NetworkInfo info = sockMan.getActiveNetworkInfo();
-            PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, this.getConnectionInfo(info));
-            pluginResult.setKeepCallback(true);
-            return pluginResult;
+            return new PluginResult(PluginResult.Status.OK, this.getConnectionInfo(info));
         }
         
         return new PluginResult(status, result);
@@ -137,8 +134,7 @@ public class NetworkManager extends Plugin {
      * @return            T=returns value
      */
     public boolean isSynch(String action) {
-        // All methods take a while, so always use async
-        return false;
+        return true;
     }
     
     /**

@@ -264,7 +264,7 @@ public class DroidGap extends PhonegapActivity {
 
         WebViewReflect.checkCompatibility();
 
-        this.appView.setWebChromeClient(new GapClient(DroidGap.this));
+        this.appView.setWebChromeClient(this.createWebChromeClient());
         this.setWebViewClient(this.appView, this.createWebViewClient());
 
         this.appView.setInitialScale(100);
@@ -302,12 +302,24 @@ public class DroidGap extends PhonegapActivity {
     }
     
     
+
     /**
-     * Factory method for generating a new WebViewClient.
-     * Subclasses may override.
+     * Factory method to generate a new WebViewclient
+     * Subclasses may override
+     * @return GapViewClient or subclass
      */
-    public GapViewClient createWebViewClient() {
+    protected GapViewClient createWebViewClient() {
     	GapViewClient result = new GapViewClient(this);
+    	return result;
+    }
+    
+    /**
+     * Factory method to generate a new WebChromeClient
+     * Subclasses may override
+     * @return GapClient or subclass
+     */
+    protected GapClient createWebChromeClient() {
+    	GapClient result = new GapClient(DroidGap.this);
     	return result;
     }
     
@@ -321,6 +333,8 @@ public class DroidGap extends PhonegapActivity {
         this.webViewClient = client;
         appView.setWebViewClient(client);
     }
+
+    
 
     /**
      * Look at activity parameters and process them.

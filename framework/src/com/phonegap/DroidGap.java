@@ -265,7 +265,7 @@ public class DroidGap extends PhonegapActivity {
         WebViewReflect.checkCompatibility();
 
         this.appView.setWebChromeClient(new GapClient(DroidGap.this));
-        this.setWebViewClient(this.appView, new GapViewClient(this));
+        this.setWebViewClient(this.appView, this.createWebViewClient());
 
         this.appView.setInitialScale(100);
         this.appView.setVerticalScrollBarEnabled(false);
@@ -299,6 +299,16 @@ public class DroidGap extends PhonegapActivity {
         // Clear cancel flag
         this.cancelLoadUrl = false;
 
+    }
+    
+    
+    /**
+     * Factory method for generating a new WebViewClient.
+     * Subclasses may override.
+     */
+    public GapViewClient createWebViewClient() {
+    	GapViewClient result = new GapViewClient(this);
+    	return result;
     }
     
     /**
@@ -1182,6 +1192,7 @@ public class DroidGap extends PhonegapActivity {
             super.onGeolocationPermissionsShowPrompt(origin, callback);
             callback.invoke(origin, true, false);
         }
+        
 
     }
 

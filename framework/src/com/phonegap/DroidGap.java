@@ -319,7 +319,7 @@ public class DroidGap extends PhonegapActivity {
      * @return GapClient or subclass
      */
     protected GapClient createWebChromeClient() {
-    	GapClient result = new GapClient(DroidGap.this);
+    	GapClient result = new GapClient(this);
     	return result;
     }
     
@@ -1215,7 +1215,7 @@ public class DroidGap extends PhonegapActivity {
      */
     public class GapViewClient extends WebViewClient {
 
-        DroidGap ctx;
+        protected DroidGap ctx;
 
         /**
          * Constructor.

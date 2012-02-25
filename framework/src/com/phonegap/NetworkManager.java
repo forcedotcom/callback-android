@@ -204,8 +204,8 @@ public class NetworkManager extends Plugin {
             if (type.equals(WIFI)) {
                 return TYPE_WIFI;
             }
-            else if (type.toLowerCase().equals(MOBILE)) {
-                type = info.getSubtypeName();
+            else if (type.equals(MOBILE)) {
+                type = info.getSubtypeName().toLowerCase();
                 if (type.equals(GSM) || 
                         type.equals(GPRS) ||
                         type.equals(EDGE)) {
